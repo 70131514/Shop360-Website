@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, ReactNode } from 'react';
 import { motion, useInView } from 'framer-motion';
 interface FadeInProps {
   children: ReactNode;
@@ -15,7 +15,8 @@ export function FadeIn({
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
-    margin: '-50px'
+    margin: '-100px',
+    amount: 0.3
   });
   const getDirectionOffset = () => {
     switch (direction) {
@@ -60,11 +61,17 @@ export function FadeIn({
     x: 0,
     y: 0
   } : initial;
-  return <motion.div ref={ref} initial={initial} animate={animate} transition={{
-    duration: 0.7,
-    delay: delay,
-    ease: [0.21, 0.47, 0.32, 0.98]
-  }} className={className}>
+  return <motion.div 
+    ref={ref} 
+    initial={initial} 
+    animate={animate} 
+    transition={{
+      duration: 0.8,
+      delay: delay,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }} 
+    className={className}
+  >
       {children}
     </motion.div>;
 }

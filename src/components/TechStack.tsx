@@ -1,19 +1,44 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { FadeIn } from './ui/FadeIn';
+import { StaggerContainer, StaggerItem } from './ui/StaggerContainer';
+
 const techs = ['React Native', 'Firebase Auth', 'Cloud Firestore', 'Cloud Storage', 'AR Integration', 'TypeScript'];
+
 export function TechStack() {
-  return <section className="py-20 bg-gray-900 text-white border-y border-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl text-center">
+  return <section className="py-16 bg-gray-900 text-white">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <FadeIn>
-          <h2 className="text-2xl font-bold mb-10 text-gray-100">
+          <motion.h2 
+            className="text-3xl font-semibold mb-8 text-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
             Built With Modern Technologies
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-            {techs.map((tech, index) => <div key={index} className="px-6 py-3 rounded-full border border-gray-700 bg-gray-800/50 text-gray-300 text-sm sm:text-base font-medium hover:border-gray-600 hover:bg-gray-800 transition-colors cursor-default">
-                {tech}
-              </div>)}
-          </div>
+          </motion.h2>
         </FadeIn>
+        
+        <StaggerContainer className="flex flex-wrap justify-center gap-3" staggerDelay={0.1}>
+          {techs.map((tech, index) => (
+            <StaggerItem key={index}>
+              <motion.div 
+                className="px-5 py-2.5 rounded-full border border-gray-700 bg-gray-800/80 text-gray-200 text-sm font-medium backdrop-blur-sm cursor-default"
+                whileHover={{ 
+                  scale: 1.1, 
+                  backgroundColor: "rgba(55, 65, 81, 1)",
+                  borderColor: "rgba(59, 130, 246, 0.5)",
+                  boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                {tech}
+              </motion.div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>;
 }

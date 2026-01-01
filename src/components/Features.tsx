@@ -1,8 +1,11 @@
 import React from 'react';
-import { Smartphone, Store, Lock, Cloud, Zap } from 'lucide-react';
+import { Smartphone, Store, Lock, Cloud, Zap, RotateCw } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { FadeIn } from './ui/FadeIn';
+import { StaggerContainer, StaggerItem } from './ui/StaggerContainer';
+
 const features = [{
-  icon: <div className="w-6 h-6" />,
+  icon: <RotateCw className="w-6 h-6" />,
   title: '360° Product Views',
   description: 'Rotate and inspect products from every angle to see every detail.'
 }, {
@@ -26,33 +29,54 @@ const features = [{
   title: 'Smooth Experience',
   description: 'Optimized performance for seamless interaction on mobile devices.'
 }];
+
 export function Features() {
-  return <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <FadeIn className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+  return <section className="py-16 bg-gray-50">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FadeIn className="text-center mb-12">
+          <motion.h2 
+            className="text-3xl font-semibold text-gray-900 mb-3"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
             Key Features
-          </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
+          </motion.h2>
+          <p className="text-gray-600 max-w-2xl mx-auto text-base font-light">
             Built with modern technology to deliver a premium user experience.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => <FadeIn key={index} delay={index * 0.1}>
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 h-full">
-                <div className="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-6">
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {features.map((feature, index) => (
+            <StaggerItem key={index}>
+              <motion.div 
+                className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-full"
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -8,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)"
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              >
+                <motion.div 
+                  className="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-5 shadow-sm"
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                >
                   {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                </motion.div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 font-light leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed font-light">
                   {feature.description}
                 </p>
-              </div>
-            </FadeIn>)}
-        </div>
+              </motion.div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>;
 }
