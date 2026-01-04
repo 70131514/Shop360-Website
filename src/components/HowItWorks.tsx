@@ -6,8 +6,8 @@ const steps = [{
   description: 'Download Shop360° from the Google Play Store and create your account.'
 }, {
   number: '02',
-  title: 'Browse Stores',
-  description: 'Explore a variety of virtual shops from the comfort of your home.'
+  title: 'Browse Products',
+  description: 'Explore a variety of products from the comfort of your home.'
 }, {
   number: '03',
   title: 'View in 360°/AR',
