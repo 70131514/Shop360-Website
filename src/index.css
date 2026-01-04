@@ -6,12 +6,48 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Light theme CSS variables */
+    --bg-primary: #FFFFFF;
+    --bg-surface: #F5F5F5;
+    --color-primary: #000000;
+    --color-secondary: #666666;
+    --color-accent: #333333;
+    --color-border: #E0E0E0;
+    --color-text: #000000;
+    --color-text-secondary: #666666;
+    --color-icon: #000000;
+    --color-icon-inactive: #666666;
+    --color-tint: #0a7ea4;
+    --color-error: #FF3B30;
+    --color-success: #34C759;
+  }
+
+  .dark {
+    /* Dark theme CSS variables */
+    --bg-primary: #000000;
+    --bg-surface: #1A1A1A;
+    --color-primary: #FFFFFF;
+    --color-secondary: #999999;
+    --color-accent: #CCCCCC;
+    --color-border: #333333;
+    --color-text: #FFFFFF;
+    --color-text-secondary: #999999;
+    --color-icon: #FFFFFF;
+    --color-icon-inactive: #666666;
+    --color-tint: #FFFFFF;
+    --color-error: #FF3B30;
+    --color-success: #34C759;
+  }
+
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
   
   body {
-    @apply antialiased text-gray-900 bg-white;
+    @apply antialiased transition-colors duration-300;
+    background-color: var(--bg-primary);
+    color: var(--color-text);
   }
 }

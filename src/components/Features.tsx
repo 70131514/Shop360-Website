@@ -27,27 +27,27 @@ const features = [{
   description: 'Optimized performance for seamless interaction on mobile devices.'
 }];
 export function Features() {
-  return <section className="py-24 bg-gray-50">
+  return <section className="py-24 bg-[#F5F5F5] dark:bg-[#1A1A1A] transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <FadeIn className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-[#000000] dark:text-[#FFFFFF] mb-4">
             Key Features
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
+          <p className="text-[#666666] dark:text-[#999999] max-w-2xl mx-auto">
             Built with modern technology to deliver a premium user experience.
           </p>
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => <FadeIn key={index} delay={index * 0.1}>
-              <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 h-full">
-                <div className="w-12 h-12 bg-gray-900 text-white rounded-xl flex items-center justify-center mb-6">
+              <div className="bg-[#FFFFFF] dark:bg-[#1A1A1A] p-8 rounded-2xl shadow-sm border border-[#E0E0E0] dark:border-[#333333] hover:shadow-md transition-shadow duration-300 h-full">
+                <div className="w-12 h-12 bg-[#000000] dark:bg-[#333333] text-[#FFFFFF] rounded-xl flex items-center justify-center mb-6">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-[#000000] dark:text-[#FFFFFF] mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 font-light leading-relaxed">
+                <p className="text-[#666666] dark:text-[#999999] font-light leading-relaxed">
                   {feature.description}
                 </p>
               </div>

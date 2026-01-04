@@ -9,8 +9,12 @@ import { TechStack } from './components/TechStack';
 import { FYPInfo } from './components/FYPInfo';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
+import { ThemeToggle } from './components/ui/ThemeToggle';
+
 export function App() {
-  return <main className="min-h-screen bg-white">
+  return (
+    <main className="min-h-screen bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-300">
+      <ThemeToggle />
       <Hero />
       <About />
       <Problem />
@@ -21,5 +25,6 @@ export function App() {
       <FYPInfo />
       <FinalCTA />
       <Footer />
-    </main>;
+    </main>
+  );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { FadeIn } from './ui/FadeIn';
 export function Solution() {
-  return <section className="py-24 bg-black text-white overflow-hidden">
+  return <section className="py-24 bg-[#000000] dark:bg-[#000000] text-[#FFFFFF] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1">
@@ -10,7 +10,7 @@ export function Solution() {
               <h2 className="text-3xl sm:text-4xl font-bold mb-6">
                 Our Solution
               </h2>
-              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+              <p className="text-[#999999] text-lg mb-8 leading-relaxed">
                 Shop360° revolutionizes the shopping experience by bringing the
                 store to you. We combine the convenience of online shopping with
                 the immersion of physical retail.
@@ -18,8 +18,8 @@ export function Solution() {
 
               <ul className="space-y-6">
                 {['Virtual Store Walkthroughs from anywhere', 'High-fidelity 360° product inspection', 'AR visualization in your own space', 'Accessible 24/7 on your mobile device'].map((item, index) => <li key={index} className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-yellow-600 mr-4 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-200 font-light">{item}</span>
+                    <CheckCircle2 className="w-6 h-6 text-[#FFFFFF] dark:text-[#FFFFFF] mr-4 flex-shrink-0 mt-0.5" />
+                    <span className="text-[#CCCCCC] font-light">{item}</span>
                   </li>)}
               </ul>
             </FadeIn>

@@ -1,108 +1,151 @@
-import React from 'react';
-import { Smartphone, Download } from 'lucide-react';
-import { Button } from './ui/Button';
-import { FadeIn } from './ui/FadeIn';
+import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { Download, ArrowRight } from "lucide-react";
+import { Button } from "./ui/Button";
+import { FadeIn } from "./ui/FadeIn";
+import { useTheme } from "../contexts/ThemeContext";
+import Shop360Black from "../assets/Shop360Black.png";
+import Shop360White from "../assets/Shop360White.png";
+
+function FloatingPaths({ position }: { position: number }) {
+    const paths = Array.from({ length: 36 }, (_, i) => ({
+        id: i,
+        d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
+            380 - i * 5 * position
+        } -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${
+            152 - i * 5 * position
+        } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
+            684 - i * 5 * position
+        } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+        color: `rgba(15,23,42,${0.1 + i * 0.03})`,
+        width: 0.5 + i * 0.03,
+    }));
+
+    return (
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <svg
+                className="w-full h-full text-[#000000] dark:text-[#FFFFFF]"
+                viewBox="0 0 696 316"
+                fill="none"
+                preserveAspectRatio="xMidYMid slice"
+            >
+                <title>Background Paths</title>
+                {paths.map((path) => (
+                    <motion.path
+                        key={path.id}
+                        d={path.d}
+                        stroke="currentColor"
+                        strokeWidth={path.width}
+                        strokeOpacity={0.15 + path.id * 0.02}
+                        initial={{ pathLength: 0.3, opacity: 0.4 }}
+                        animate={{
+                            pathLength: 1,
+                            opacity: [0.4, 0.7, 0.4],
+                            pathOffset: [0, 1, 0],
+                        }}
+                        transition={{
+                            duration: 20 + Math.random() * 10,
+                            repeat: Number.POSITIVE_INFINITY,
+                            ease: "linear",
+                        }}
+                    />
+                ))}
+            </svg>
+        </div>
+    );
+}
+
 export function Hero() {
-  return <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden pt-20 pb-16">
+  const [titleNumber, setTitleNumber] = useState(0);
+  const { theme } = useTheme();
+  const titles = useMemo(
+    () => ["immersive", "virtual", "revolutionary", "innovative", "interactive"],
+    []
+  );
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (titleNumber === titles.length - 1) {
+        setTitleNumber(0);
+      } else {
+        setTitleNumber(titleNumber + 1);
+      }
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, titles]);
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#000000] overflow-hidden transition-colors duration-300">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-gray-50 blur-3xl opacity-60" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-gray-50 blur-3xl opacity-60" />
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[#F5F5F5] dark:bg-[#1A1A1A] blur-3xl opacity-60 dark:opacity-40" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full bg-[#F5F5F5] dark:bg-[#1A1A1A] blur-3xl opacity-60 dark:opacity-40" />
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left max-w-2xl">
-            <FadeIn delay={0.1}>
-              <div className="inline-flex items-center px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm font-medium mb-6">
-                <span className="w-2 h-2 rounded-full bg-yellow-600 mr-2"></span>
-                Final Year Project 2024
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-6">
-                Shop<span className="text-gray-400">360°</span>
+        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
+          <FadeIn delay={0.1}>
+            <div className="mb-8">
+              <img 
+                src={theme === 'dark' ? Shop360White : Shop360Black} 
+                alt="Shop360° Logo" 
+                className="h-16 md:h-20 w-auto mx-auto"
+              />
+            </div>
+          </FadeIn>
+          
+          <FadeIn delay={0.2}>
+            <div className="flex gap-4 flex-col">
+              <h1 className="text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-regular">
+                <span className="text-[#000000] dark:text-[#FFFFFF]">Shop360°</span>
+                <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+                  &nbsp;
+                  {titles.map((title, index) => (
+                    <motion.span
+                      key={index}
+                      className="absolute font-semibold text-[#000000] dark:text-[#FFFFFF]"
+                      initial={{ opacity: 0, y: "-100" }}
+                      transition={{ type: "spring", stiffness: 50 }}
+                      animate={
+                        titleNumber === index
+                          ? {
+                              y: 0,
+                              opacity: 1,
+                            }
+                          : {
+                              y: titleNumber > index ? -150 : 150,
+                              opacity: 0,
+                            }
+                      }
+                    >
+                      {title}
+                    </motion.span>
+                  ))}
+                </span>
+                <span className="text-[#000000] dark:text-[#FFFFFF]">Shopping Experience</span>
               </h1>
-            </FadeIn>
 
-            <FadeIn delay={0.3}>
-              <p className="text-xl sm:text-2xl font-light text-gray-600 mb-2">
-                See It. Try It. Buy It.
+              <p className="text-lg md:text-xl leading-relaxed tracking-tight text-[#666666] dark:text-[#999999] max-w-2xl text-center mx-auto mt-4">
+                Experience products virtually with advanced 360° and AR technology. 
+                See it, try it, buy it. The future of immersive shopping is here.
               </p>
-              <p className="text-lg text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                Experience products virtually with advanced 360° and AR
-                technology. The future of immersive shopping is here.
-              </p>
-            </FadeIn>
+            </div>
+          </FadeIn>
 
-            <FadeIn delay={0.4}>
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Button href="https://play.google.com" icon={<Download className="w-5 h-5" />} className="w-full sm:w-auto">
-                  Download on Play Store
-                </Button>
-                <Button variant="secondary" href="#how-it-works" className="w-full sm:w-auto">
-                  Learn More
-                </Button>
-              </div>
-            </FadeIn>
-          </div>
-
-          {/* Phone Mockup */}
-          <div className="flex-1 w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[400px]">
-            <FadeIn delay={0.5} direction="left">
-              <div className="relative mx-auto border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-2xl">
-                <div className="h-[32px] w-[3px] bg-gray-800 absolute -left-[17px] top-[72px] rounded-l-lg"></div>
-                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
-                <div className="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
-                <div className="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
-                <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white relative">
-                  {/* Screen Content Placeholder */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-white flex flex-col">
-                    {/* Status Bar */}
-                    <div className="h-6 w-full bg-white/90 backdrop-blur-sm flex justify-between items-center px-4 text-[10px] font-medium text-gray-900">
-                      <span>9:41</span>
-                      <div className="flex gap-1">
-                        <div className="w-3 h-3 bg-gray-900 rounded-full opacity-20"></div>
-                        <div className="w-3 h-3 bg-gray-900 rounded-full opacity-20"></div>
-                      </div>
-                    </div>
-
-                    {/* App Header */}
-                    <div className="px-6 pt-8 pb-4">
-                      <div className="h-8 w-8 bg-gray-900 rounded-lg mb-4 flex items-center justify-center">
-                        <Smartphone className="text-white w-4 h-4" />
-                      </div>
-                      <div className="h-6 w-32 bg-gray-200 rounded mb-2"></div>
-                      <div className="h-4 w-48 bg-gray-100 rounded"></div>
-                    </div>
-
-                    {/* App Content Skeleton */}
-                    <div className="px-6 space-y-4">
-                      <div className="h-40 w-full bg-gray-100 rounded-2xl relative overflow-hidden group">
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-300">
-                          <span className="text-sm font-medium">360° View</span>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="h-32 bg-gray-50 rounded-xl"></div>
-                        <div className="h-32 bg-gray-50 rounded-xl"></div>
-                      </div>
-                    </div>
-
-                    {/* Bottom Nav */}
-                    <div className="mt-auto h-16 bg-white border-t border-gray-100 flex justify-around items-center px-6">
-                      <div className="w-6 h-6 rounded-full bg-gray-900"></div>
-                      <div className="w-6 h-6 rounded-full bg-gray-200"></div>
-                      <div className="w-6 h-6 rounded-full bg-gray-200"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+          <FadeIn delay={0.3}>
+            <div className="flex flex-row gap-3 flex-wrap justify-center">
+              <Button size="lg" className="gap-2" href="https://play.google.com">
+                Download on Play Store <Download className="w-4 h-4" />
+              </Button>
+              <Button size="lg" variant="outline" className="gap-2" href="#how-it-works">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </Button>
+            </div>
+          </FadeIn>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 }

@@ -1,38 +1,58 @@
-import React, { Component } from 'react';
-import { motion } from 'framer-motion';
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
-  children: ReactNode;
-  icon?: ReactNode;
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "../../lib/utils";
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "bg-[#000000] dark:bg-[#FFFFFF] text-[#FFFFFF] dark:text-[#000000] hover:bg-[#333333] dark:hover:bg-[#CCCCCC]",
+        destructive:
+          "bg-[#FF3B30] text-[#FFFFFF] hover:bg-[#FF3B30]/90",
+        outline:
+          "border border-[#E0E0E0] dark:border-[#333333] bg-[#FFFFFF] dark:bg-[#1A1A1A] hover:bg-[#F5F5F5] dark:hover:bg-[#333333] text-[#000000] dark:text-[#FFFFFF]",
+        secondary:
+          "bg-[#F5F5F5] dark:bg-[#1A1A1A] text-[#000000] dark:text-[#FFFFFF] hover:bg-[#E0E0E0] dark:hover:bg-[#333333]",
+        ghost: "hover:bg-[#F5F5F5] dark:hover:bg-[#1A1A1A] text-[#000000] dark:text-[#FFFFFF]",
+        link: "text-[#000000] dark:text-[#FFFFFF] underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
   href?: string;
 }
-export function Button({
-  variant = 'primary',
-  children,
-  className = '',
-  icon,
-  href,
-  ...props
-}: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
-  const variants = {
-    primary: 'bg-black text-white hover:bg-gray-800 focus:ring-gray-900 border border-transparent',
-    secondary: 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 hover:border-gray-300 focus:ring-gray-200',
-    outline: 'bg-transparent text-white border border-white/30 hover:bg-white/10 focus:ring-white/50'
-  };
-  const content = <>
-      {icon && <span className="mr-2">{icon}</span>}
-      {children}
-    </>;
-  const Component = motion.create(href ? 'a' : 'button') as any;
-  return <Component whileHover={{
-    scale: 1.02
-  }} whileTap={{
-    scale: 0.98
-  }} className={`${baseStyles} ${variants[variant]} ${className}`} href={href} {...href ? {
-    target: '_blank',
-    rel: 'noopener noreferrer'
-  } : {}} {...props}>
-      {content}
-    </Component>;
-}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, href, ...props }, ref) => {
+    const Comp = asChild ? Slot : (href ? "a" : "button");
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        href={href}
+        {...(href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
