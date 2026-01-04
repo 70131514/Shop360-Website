@@ -1,31 +1,84 @@
 import React from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
-import { motion } from 'framer-motion';
+import { cn } from '../../lib/utils';
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  className?: string;
+}
+
+export function ThemeToggle({ className }: ThemeToggleProps) {
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
-    <motion.button
-      onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 p-3 rounded-full bg-[#FFFFFF]/90 dark:bg-[#000000]/90 backdrop-blur-md border border-[#E0E0E0] dark:border-[#333333] shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
+    <div
+      className={cn(
+        "fixed top-6 right-6 z-50 flex w-16 h-8 p-1 rounded-full cursor-pointer transition-all duration-300 backdrop-blur-md shadow-lg",
+        isDark 
+          ? "bg-[#000000]/90 border border-[#333333]" 
+          : "bg-[#FFFFFF]/90 border border-[#E0E0E0]",
+        className
+      )}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleTheme();
+      }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleTheme();
+        }
+      }}
       aria-label="Toggle theme"
     >
-      <motion.div
-        initial={false}
-        animate={{ rotate: theme === 'dark' ? 180 : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        {theme === 'dark' ? (
-          <Sun className="w-5 h-5 text-[#FFFFFF]" />
-        ) : (
-          <Moon className="w-5 h-5 text-[#000000]" />
-        )}
-      </motion.div>
-    </motion.button>
+      <div className="flex justify-between items-center w-full">
+        <div
+          className={cn(
+            "flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300",
+            isDark 
+              ? "transform translate-x-0 bg-[#333333]" 
+              : "transform translate-x-8 bg-[#E0E0E0]"
+          )}
+        >
+          {isDark ? (
+            <Moon 
+              className="w-4 h-4 text-white" 
+              strokeWidth={1.5}
+            />
+          ) : (
+            <Sun 
+              className="w-4 h-4 text-gray-700" 
+              strokeWidth={1.5}
+            />
+          )}
+        </div>
+        <div
+          className={cn(
+            "flex justify-center items-center w-6 h-6 rounded-full transition-transform duration-300",
+            isDark 
+              ? "bg-transparent" 
+              : "transform -translate-x-8"
+          )}
+        >
+          {isDark ? (
+            <Sun 
+              className="w-4 h-4 text-gray-500" 
+              strokeWidth={1.5}
+            />
+          ) : (
+            <Moon 
+              className="w-4 h-4 text-black" 
+              strokeWidth={1.5}
+            />
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 

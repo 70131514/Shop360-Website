@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Download, ArrowRight } from "lucide-react";
+import { Download } from "lucide-react";
 import { Button } from "./ui/Button";
 import { FadeIn } from "./ui/FadeIn";
 import { useTheme } from "../contexts/ThemeContext";
@@ -89,6 +89,7 @@ export function Hero() {
           <FadeIn delay={0.1}>
             <div className="mb-8">
               <img 
+                key={theme}
                 src={theme === 'dark' ? Shop360White : Shop360Black} 
                 alt="Shop360° Logo" 
                 className="h-16 md:h-20 w-auto mx-auto"
@@ -97,9 +98,9 @@ export function Hero() {
           </FadeIn>
           
           <FadeIn delay={0.2}>
-            <div className="flex gap-4 flex-col">
+            <div className="flex gap-6 flex-col items-center">
               <h1 className="text-5xl md:text-7xl max-w-4xl tracking-tighter text-center font-regular">
-                <span className="text-[#000000] dark:text-[#FFFFFF]">Shop360°</span>
+                <span className="text-[#000000] dark:text-[#FFFFFF] pl-20 pr-20">Shop360°</span>
                 <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                   &nbsp;
                   {titles.map((title, index) => (
@@ -124,12 +125,23 @@ export function Hero() {
                     </motion.span>
                   ))}
                 </span>
-                <span className="text-[#000000] dark:text-[#FFFFFF]">Shopping Experience</span>
+                {/*<span className="text-[#000000] dark:text-[#FFFFFF]">Shopping Experience</span>*/}
               </h1>
 
-              <p className="text-lg md:text-xl leading-relaxed tracking-tight text-[#666666] dark:text-[#999999] max-w-2xl text-center mx-auto mt-4">
+              {/* Main Tagline - Emphasized */}
+              <FadeIn delay={0.25}>
+                <div className="mt-6 mb-4">
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl tracking-[0.15em] md:tracking-[0.2em] text-center font-mono uppercase">
+                    <span className="text-[#000000] dark:text-[#FFFFFF]">See It.</span>
+                    <span className="text-[#000000] dark:text-[#FFFFFF]"> Try It.</span>
+                    <span className="text-[#000000] dark:text-[#FFFFFF]"> Buy It.</span>
+                  </h2>
+                </div>
+              </FadeIn>
+
+              <p className="text-lg md:text-xl leading-relaxed tracking-tight text-[#000000] dark:text-[#ffffff] max-w-2xl text-center mx-auto">
                 Experience products virtually with advanced 360° and AR technology. 
-                See it, try it, buy it. The future of immersive shopping is here.
+                The future of immersive shopping is here.
               </p>
             </div>
           </FadeIn>
@@ -138,9 +150,6 @@ export function Hero() {
             <div className="flex flex-row gap-3 flex-wrap justify-center">
               <Button size="lg" className="gap-2" href="https://play.google.com">
                 Download on Play Store <Download className="w-4 h-4" />
-              </Button>
-              <Button size="lg" variant="outline" className="gap-2" href="#how-it-works">
-                Learn More <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </FadeIn>

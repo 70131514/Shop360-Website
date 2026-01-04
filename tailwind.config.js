@@ -6,6 +6,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      fontFamily: {
+        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
+      },
       colors: {
         // Light theme colors
         'theme-bg': {
