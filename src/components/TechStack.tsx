@@ -82,7 +82,7 @@ export function TechStack() {
   const duplicatedTechs = [...techs, ...techs, ...techs];
 
   return (
-    <section className="py-20 lg:py-40 bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-300">
+    <section id="technologies" className="py-20 lg:py-40 bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <FadeIn className="text-center mb-10">
           <h2 className="text-xl md:text-3xl lg:text-5xl tracking-tighter font-regular text-[#000000] dark:text-[#FFFFFF] mb-4">

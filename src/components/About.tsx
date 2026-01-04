@@ -1,7 +1,7 @@
 import React from 'react';
 import { FadeIn } from './ui/FadeIn';
 export function About() {
-  return <section className="py-24 bg-[#F5F5F5] dark:bg-[#1A1A1A] transition-colors duration-300">
+  return <section id="about" className="py-24 bg-[#F5F5F5] dark:bg-[#1A1A1A] transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
         <FadeIn>
           <h2 className="text-3xl font-bold text-[#000000] dark:text-[#FFFFFF] mb-6">

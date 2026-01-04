@@ -164,7 +164,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="relative py-24 bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-300 overflow-hidden">
+    <section id="features" className="relative py-24 bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-300 overflow-hidden">
       <FloatingPaths position={1.2} corner="bottom-left" />
       <FloatingPaths position={1.2} corner="top-right" />
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">

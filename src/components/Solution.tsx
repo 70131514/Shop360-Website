@@ -2,7 +2,7 @@ import React from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { FadeIn } from './ui/FadeIn';
 export function Solution() {
-  return <section className="py-24 bg-[#000000] dark:bg-[#000000] text-[#FFFFFF] overflow-hidden transition-colors duration-300">
+  return <section id="solution" className="py-24 bg-[#000000] dark:bg-[#000000] text-[#FFFFFF] overflow-hidden transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1">

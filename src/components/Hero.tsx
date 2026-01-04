@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Download } from "lucide-react";
-import { Button } from "./ui/Button";
+import { InteractiveHoverButton } from "./ui/InteractiveHoverButton";
 import { FadeIn } from "./ui/FadeIn";
 import { useTheme } from "../contexts/ThemeContext";
 import Shop360Black from "../assets/Shop360Black.png";
@@ -148,9 +147,10 @@ export function Hero() {
 
           <FadeIn delay={0.3}>
             <div className="flex flex-row gap-3 flex-wrap justify-center">
-              <Button size="lg" className="gap-2" href="https://play.google.com">
-                Download on Play Store <Download className="w-4 h-4" />
-              </Button>
+              <InteractiveHoverButton 
+                text="Download on Play Store" 
+                href="https://play.google.com"
+              />
             </div>
           </FadeIn>
         </div>
