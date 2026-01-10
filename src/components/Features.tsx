@@ -165,6 +165,12 @@ const features = [
 export default function Features() {
   return (
     <section id="features" className="relative py-24 bg-[#FFFFFF] dark:bg-[#000000] transition-colors duration-300 overflow-hidden">
+      {/* Fade transition at top */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#FFFFFF] dark:from-[#000000] via-[#FFFFFF]/80 dark:via-[#000000]/80 to-transparent pointer-events-none z-20"></div>
+      
+      {/* Fade transition at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FFFFFF] dark:from-[#000000] via-[#FFFFFF]/80 dark:via-[#000000]/80 to-transparent pointer-events-none z-20"></div>
+      
       <FloatingPaths position={1.2} corner="bottom-left" />
       <FloatingPaths position={1.2} corner="top-right" />
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">

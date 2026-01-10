@@ -75,6 +75,9 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-[#FFFFFF] dark:bg-[#000000] overflow-hidden transition-colors duration-300">
+      {/* Fade transition at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FFFFFF] dark:from-[#000000] via-[#FFFFFF]/80 dark:via-[#000000]/80 to-transparent pointer-events-none z-20"></div>
+      
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[#F5F5F5] dark:bg-[#1A1A1A] blur-3xl opacity-60 dark:opacity-40" />
