@@ -2,7 +2,7 @@ import React from 'react';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { Problem } from './components/Problem';
-import { Solution } from './components/Solution';
+// import { Solution } from './components/Solution';
 import Features from './components/Features';
 import { HowItWorks } from './components/HowItWorks';
 import { TechStack } from './components/TechStack';
@@ -18,9 +18,9 @@ export function App() {
       <Hero />
       <About />
       <Problem />
-      <Solution />
-      <Features />
+      {/* <Solution /> */}
       <HowItWorks />
+      <Features />
       <TechStack />
       <FYPInfo />
       <FinalCTA />

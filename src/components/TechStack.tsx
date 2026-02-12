@@ -33,6 +33,105 @@ const techs: TechItem[] = [
   { name: 'ViroReact', Icon: Package },
   { name: 'Git', Icon: GitBranch },
   { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
+  { name: 'React Native', Icon: Smartphone },
+  { name: 'Firebase Auth', Icon: Lock },
+  { name: 'Cloud Firestore', Icon: Database },
+  { name: 'Cloud Storage', Icon: HardDrive },
+  { name: 'AR Integration', Icon: Box },
+  { name: 'TypeScript', Icon: Code },
+  { name: 'ViroReact', Icon: Package },
+  { name: 'Git', Icon: GitBranch },
+  { name: 'GitHub', Icon: Github },
 ];
 
 export function TechStack() {
@@ -45,7 +144,7 @@ export function TechStack() {
 
     let intervalId: NodeJS.Timeout | null = null;
 
-    // Wait for carousel to be ready
+    // Wait for carousel to be ready; slow auto-advance for a calmer, minimal feel
     const timeoutId = setTimeout(() => {
       intervalId = setInterval(() => {
         try {
@@ -67,7 +166,7 @@ export function TechStack() {
             clearInterval(intervalId);
           }
         }
-      }, 1000);
+      }, 2000);
     }, 100);
 
     return () => {
@@ -90,13 +189,22 @@ export function TechStack() {
           </h2>
         </FadeIn>
         <div className="w-full overflow-hidden">
-          <Carousel setApi={setApi} className="w-full" opts={{ align: "start", loop: false }}>
-            <CarouselContent className="-ml-2 md:-ml-4">
+          <Carousel
+            setApi={setApi}
+            className="w-full"
+            opts={{
+              align: 'start',
+              loop: false,
+              duration: 28,
+              dragFree: false,
+            }}
+          >
+            <CarouselContent className="-ml-2 md:-ml-4 [scroll-behavior:smooth]">
               {duplicatedTechs.map((tech, index) => (
                 <CarouselItem className="pl-2 md:pl-4 basis-1/3 md:basis-1/4 lg:basis-1/6" key={`${tech.name}-${index}`}>
-                  <div className="flex flex-col items-center justify-center rounded-md aspect-square bg-[#F5F5F5] dark:bg-[#1A1A1A]/50 border border-[#E0E0E0] dark:border-[#333333] p-6 hover:border-[#666666] dark:hover:border-[#666666] hover:bg-[#E0E0E0] dark:hover:bg-[#1A1A1A] transition-colors">
-                    <tech.Icon className="w-8 h-8 md:w-10 md:h-10 text-[#666666] dark:text-[#CCCCCC] mb-3" />
-                    <span className="text-xs md:text-sm text-[#666666] dark:text-[#CCCCCC] text-center font-medium">
+                  <div className="flex flex-col items-center justify-center rounded-lg aspect-square bg-[#FAFAFA] dark:bg-[#0D0D0D]/80 border border-[#EBEBEB] dark:border-[#262626] p-5 md:p-6 hover:border-[#DDDDDD] dark:hover:border-[#404040] hover:bg-[#F0F0F0] dark:hover:bg-[#141414] transition-all duration-500 ease-out">
+                    <tech.Icon className="w-7 h-7 md:w-8 md:h-8 text-[#555555] dark:text-[#AAAAAA] mb-2.5" />
+                    <span className="text-xs md:text-sm text-[#555555] dark:text-[#AAAAAA] text-center font-medium tracking-tight">
                       {tech.name}
                     </span>
                   </div>

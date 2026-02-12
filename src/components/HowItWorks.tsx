@@ -33,21 +33,24 @@ export function HowItWorks() {
           {/* Connecting line for desktop */}
           <div className="hidden lg:block absolute top-12 left-0 w-full h-0.5 bg-[#E0E0E0] dark:bg-[#333333] -z-10"></div>
 
-          {steps.map((step, index) => <FadeIn key={index} delay={index * 0.15} className="relative bg-[#FFFFFF] dark:bg-[#000000]">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-24 h-24 rounded-full bg-[#FFFFFF] dark:bg-[#1A1A1A] border-4 border-[#F5F5F5] dark:border-[#333333] flex items-center justify-center mb-6 shadow-sm">
-                  <span className="text-3xl font-bold text-[#666666] dark:text-[#666666]">
+          {steps.map((step, index) => (
+            <FadeIn key={index} delay={index * 0.15} className="relative bg-[#FFFFFF] dark:bg-[#000000]">
+              <div className="group flex flex-col items-center text-center cursor-default py-2 -my-2 px-1 rounded-2xl transition-colors duration-300 ease-out hover:duration-500">
+                {/* Number circle: inverts on hover (light in dark mode, dark in light mode) */}
+                <div className="w-24 h-24 rounded-full bg-[#FFFFFF] dark:bg-[#1A1A1A] border-4 border-[#F5F5F5] dark:border-[#333333] flex items-center justify-center mb-6 shadow-sm transition-all duration-300 ease-out group-hover:scale-105 group-hover:bg-[#E8E8E8] group-hover:border-[#E0E0E0] dark:group-hover:bg-[#2A2A2A] dark:group-hover:border-[#555555]">
+                  <span className="text-3xl font-bold text-[#666666] dark:text-[#666666] transition-colors duration-300 ease-out group-hover:text-[#000000] dark:group-hover:text-[#FFFFFF]">
                     {step.number}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-[#000000] dark:text-[#FFFFFF] mb-3">
+                <h3 className="text-xl font-bold text-[#000000] dark:text-[#FFFFFF] mb-3 transition-colors duration-300 ease-out group-hover:text-[#000000] dark:group-hover:text-[#E8E8E8]">
                   {step.title}
                 </h3>
-                <p className="text-[#666666] dark:text-[#999999] text-sm leading-relaxed max-w-xs">
+                <p className="text-[#666666] dark:text-[#999999] text-sm leading-relaxed max-w-xs transition-colors duration-300 ease-out group-hover:text-[#333333] dark:group-hover:text-[#CCCCCC]">
                   {step.description}
                 </p>
               </div>
-            </FadeIn>)}
+            </FadeIn>
+          ))}
         </div>
       </div>
     </section>;

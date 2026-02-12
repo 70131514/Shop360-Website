@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import phoneImage from '../assets/image.jpg';
+import phoneImage from '../assets/image2.jpeg';
 
 function FloatingPaths({ position, corner = "bottom-left" }: { position: number; corner?: "bottom-left" | "top-right" | "top-left" | "bottom-right" }) {
   const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -160,14 +160,14 @@ export function About() {
       </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-center">
           
           {/* Image Display */}
           <div 
             ref={phoneRef}
             className="order-2 lg:order-1 phone-container opacity-0"
           >
-            <div className="relative w-full max-w-2xl mx-auto">
+            <div className="relative w-full max-w-[240px] sm:max-w-[280px] lg:max-w-xs mx-auto">
               <div className="relative overflow-hidden rounded-3xl shadow-2xl">
                 <img 
                   src={phoneImage} 
