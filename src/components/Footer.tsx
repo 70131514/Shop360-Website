@@ -201,16 +201,17 @@ export function Footer() {
               aria-hidden="true"
               onClick={() => setGithubModalOpen(false)}
             />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md max-h-[85vh] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="github-modal-heading"
-            >
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className="w-full max-w-md max-h-[calc(100vh-2rem)] rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto pointer-events-auto"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="github-modal-heading"
+              >
             <div className="flex items-center justify-between mb-5">
               <h2
                 id="github-modal-heading"
@@ -252,7 +253,8 @@ export function Footer() {
                 </React.Fragment>
               ))}
             </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
@@ -270,16 +272,17 @@ export function Footer() {
               aria-hidden="true"
               onClick={() => setEmailModalOpen(false)}
             />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md max-h-[85vh] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="email-modal-heading"
-            >
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className="w-full max-w-md max-h-[calc(100vh-2rem)] rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto pointer-events-auto"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="email-modal-heading"
+              >
               <div className="flex items-center justify-between mb-5">
                 <h2
                   id="email-modal-heading"
@@ -319,7 +322,8 @@ export function Footer() {
                   </React.Fragment>
                 ))}
               </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
@@ -337,16 +341,17 @@ export function Footer() {
               aria-hidden="true"
               onClick={() => setLinkedinModalOpen(false)}
             />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md max-h-[85vh] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto"
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="linkedin-modal-heading"
-            >
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+                className="w-full max-w-md max-h-[calc(100vh-2rem)] rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto pointer-events-auto"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="linkedin-modal-heading"
+              >
               <div className="flex items-center justify-between mb-5">
                 <h2
                   id="linkedin-modal-heading"
@@ -388,7 +393,8 @@ export function Footer() {
                   </React.Fragment>
                 ))}
               </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </>
         )}
       </AnimatePresence>
