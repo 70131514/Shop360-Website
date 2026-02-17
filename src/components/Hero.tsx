@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { InteractiveHoverButton } from "./ui/InteractiveHoverButton";
 import { FadeIn } from "./ui/FadeIn";
 import { useTheme } from "../contexts/ThemeContext";
 import Shop360Black from "../assets/Shop360Black.png";
@@ -145,15 +144,6 @@ export function Hero() {
                 Experience products virtually with advanced 360° and AR technology. 
                 The future of immersive shopping is here.
               </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <div className="flex flex-row gap-3 flex-wrap justify-center">
-              <InteractiveHoverButton 
-                text="Download on Play Store" 
-                href="https://play.google.com"
-              />
             </div>
           </FadeIn>
         </div>
