@@ -155,7 +155,7 @@ export function FinalCTA() {
           </p>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center max-w-md mx-auto"
+            className="flex flex-row gap-2 sm:gap-3 justify-center items-center max-w-md mx-auto w-full px-1"
           >
             {/* Honeypot: hidden from users, bots often fill it; script rejects if non-empty */}
             <label className="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
@@ -181,13 +181,13 @@ export function FinalCTA() {
               }}
               placeholder="Enter your email"
               disabled={status === 'loading'}
-              className="flex-1 min-w-0 h-12 px-5 rounded-3xl bg-[#FFFFFF]/80 dark:bg-[#0D0D0D]/85 backdrop-blur-md border border-[#FFFFFF]/60 dark:border-[#FFFFFF]/15 text-[#000000] dark:text-[#FFFFFF] placeholder:text-[#666666] dark:placeholder:text-[#999999] text-base font-light shadow-[0_2px_12px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.3)] focus:outline-none focus:border-[#000000]/25 dark:focus:border-[#FFFFFF]/30 focus:ring-2 focus:ring-[#000000]/10 dark:focus:ring-[#FFFFFF]/10 transition-all duration-200"
+              className="flex-1 min-w-0 h-11 sm:h-12 w-full px-4 sm:px-5 py-2.5 sm:py-0 rounded-3xl bg-[#FFFFFF]/80 dark:bg-[#0D0D0D]/85 backdrop-blur-md border border-[#FFFFFF]/60 dark:border-[#FFFFFF]/15 text-[#000000] dark:text-[#FFFFFF] placeholder:text-[#666666] dark:placeholder:text-[#999999] text-base font-light shadow-[0_2px_12px_rgba(0,0,0,0.06)] dark:shadow-[0_2px_12px_rgba(0,0,0,0.3)] focus:outline-none focus:border-[#000000]/25 dark:focus:border-[#FFFFFF]/30 focus:ring-2 focus:ring-[#000000]/10 dark:focus:ring-[#FFFFFF]/10 transition-all duration-200 touch-manipulation"
               aria-label="Email address"
             />
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="h-12 px-6 rounded-3xl bg-[#000000]/90 dark:bg-[#FFFFFF]/90 backdrop-blur-md text-[#FFFFFF] dark:text-[#000000] text-sm font-medium tracking-tight border border-[#000000]/20 dark:border-[#FFFFFF]/20 shadow-[0_4px_20px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:bg-[#000000] dark:hover:bg-[#FFFFFF] hover:shadow-[0_6px_24px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_6px_24px_rgba(255,255,255,0.15)] focus:outline-none focus:ring-2 focus:ring-[#000000]/25 dark:focus:ring-[#FFFFFF]/25 disabled:opacity-60 transition-all duration-200 shrink-0"
+              className="h-11 sm:h-12 shrink-0 px-4 sm:px-6 py-2.5 sm:py-0 rounded-3xl bg-[#000000]/90 dark:bg-[#FFFFFF]/90 backdrop-blur-md text-[#FFFFFF] dark:text-[#000000] text-sm font-medium tracking-tight border border-[#000000]/20 dark:border-[#FFFFFF]/20 shadow-[0_4px_20px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_20px_rgba(255,255,255,0.1)] hover:bg-[#000000] dark:hover:bg-[#FFFFFF] hover:shadow-[0_6px_24px_rgba(0,0,0,0.2)] dark:hover:shadow-[0_6px_24px_rgba(255,255,255,0.15)] focus:outline-none focus:ring-2 focus:ring-[#000000]/25 dark:focus:ring-[#FFFFFF]/25 disabled:opacity-60 transition-all duration-200 shrink-0 touch-manipulation"
             >
               {status === 'loading' ? 'Sending…' : 'Notify me'}
             </button>
