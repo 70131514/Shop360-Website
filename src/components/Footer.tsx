@@ -97,33 +97,33 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-[#FFFFFF] dark:bg-[#000000] pb-6 pt-16 lg:pb-8 lg:pt-24 border-t border-[#E0E0E0] dark:border-[#333333] transition-colors duration-300">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="md:flex md:items-start md:justify-between">
+    <footer className="bg-[#FFFFFF] dark:bg-[#000000] pb-6 pt-10 sm:pt-12 md:pt-14 lg:pb-8 lg:pt-24 border-t border-[#E0E0E0] dark:border-[#333333] transition-colors duration-300 w-full overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 sm:gap-4">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center gap-x-2 cursor-pointer"
+            className="flex items-center gap-x-2 cursor-pointer w-fit"
             aria-label={brandName}
           >
             <img 
               src={theme === 'dark' ? Shop360White : Shop360Black} 
               alt={`${brandName} Logo`} 
-              className="h-8 w-auto"
+              className="h-6 sm:h-7 md:h-8 w-auto"
             />
-            <span className="font-bold text-xl text-[#000000] dark:text-[#FFFFFF]">{brandName}</span>
+            <span className="font-bold text-lg sm:text-xl text-[#000000] dark:text-[#FFFFFF]">{brandName}</span>
           </a>
-          <ul className="flex list-none mt-6 md:mt-0 space-x-3">
+          <ul className="flex list-none flex-wrap gap-2 sm:gap-0 sm:space-x-3 sm:space-y-0">
             {socialLinks.map((link, i) => (
               <li key={i}>
                 {link.isGitHub ? (
                   <Button
                     variant="secondary"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-9 w-9 sm:h-10 sm:w-10 rounded-full shrink-0"
                     onClick={() => setGithubModalOpen(true)}
                     aria-label={link.label}
                   >
@@ -133,7 +133,7 @@ export function Footer() {
                   <Button
                     variant="secondary"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-9 w-9 sm:h-10 sm:w-10 rounded-full shrink-0"
                     onClick={() => setEmailModalOpen(true)}
                     aria-label={link.label}
                   >
@@ -143,7 +143,7 @@ export function Footer() {
                   <Button
                     variant="secondary"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-9 w-9 sm:h-10 sm:w-10 rounded-full shrink-0"
                     onClick={() => setLinkedinModalOpen(true)}
                     aria-label={link.label}
                   >
@@ -153,7 +153,7 @@ export function Footer() {
                   <Button
                     variant="secondary"
                     size="icon"
-                    className="h-10 w-10 rounded-full"
+                    className="h-9 w-9 sm:h-10 sm:w-10 rounded-full shrink-0"
                     asChild
                   >
                     <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
@@ -165,15 +165,15 @@ export function Footer() {
             ))}
           </ul>
         </div>
-        <div className="border-t border-[#E0E0E0] dark:border-[#333333] mt-6 pt-6 md:mt-4 md:pt-8 lg:grid lg:grid-cols-10">
+        <div className="border-t border-[#E0E0E0] dark:border-[#333333] mt-6 sm:mt-6 pt-5 sm:pt-6 md:pt-6 lg:pt-8 lg:grid lg:grid-cols-10 lg:gap-4">
           <nav className="lg:mt-0 lg:col-[4/11]">
-            <ul className="list-none flex flex-wrap -my-1 -mx-2 lg:justify-end">
+            <ul className="list-none flex flex-wrap gap-x-4 gap-y-1 sm:gap-x-5 lg:justify-end -mx-1">
               {mainLinks.map((link, i) => (
-                <li key={i} className="my-1 mx-2 shrink-0">
+                <li key={i} className="shrink-0">
                   <a
                     href={link.href}
                     onClick={(e) => handleSmoothScroll(e, link.href)}
-                    className="text-sm text-[#000000] dark:text-[#FFFFFF] underline-offset-4 hover:underline transition-colors cursor-pointer"
+                    className="text-xs sm:text-sm text-[#000000] dark:text-[#FFFFFF] underline-offset-4 hover:underline transition-colors cursor-pointer py-1"
                   >
                     {link.label}
                   </a>
@@ -181,9 +181,9 @@ export function Footer() {
               ))}
             </ul>
           </nav>
-          <div className="mt-6 text-sm leading-6 text-[#666666] dark:text-[#999999] whitespace-nowrap lg:mt-0 lg:row-[1/3] lg:col-[1/4]">
-            <div>{copyright.text}</div>
-            {copyright.license && <div className="mt-1">{copyright.license}</div>}
+          <div className="mt-4 sm:mt-5 lg:mt-0 lg:row-[1/3] lg:col-[1/4] text-xs sm:text-sm leading-relaxed text-[#666666] dark:text-[#999999] min-w-0">
+            <div className="break-words">{copyright.text}</div>
+            {copyright.license && <div className="mt-1 break-words">{copyright.license}</div>}
           </div>
         </div>
       </div>
@@ -206,7 +206,7 @@ export function Footer() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-6"
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md max-h-[85vh] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto"
               role="dialog"
               aria-modal="true"
               aria-labelledby="github-modal-heading"
@@ -275,7 +275,7 @@ export function Footer() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-6"
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md max-h-[85vh] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto"
               role="dialog"
               aria-modal="true"
               aria-labelledby="email-modal-heading"
@@ -342,7 +342,7 @@ export function Footer() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-6"
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md max-h-[85vh] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-4 sm:p-6 overflow-y-auto"
               role="dialog"
               aria-modal="true"
               aria-labelledby="linkedin-modal-heading"
