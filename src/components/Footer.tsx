@@ -1,14 +1,33 @@
-import React from 'react';
-import { Github, Twitter, Linkedin, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Github, Linkedin, Mail, X, ExternalLink } from 'lucide-react';
 import { Button } from './ui/Button';
 import { useTheme } from '../contexts/ThemeContext';
 import Shop360Black from '../assets/Shop360Black.png';
 import Shop360White from '../assets/Shop360White.png';
 
+const GITHUB_PROFILES = [
+  { name: 'Muhammad Azeem', username: 'xo-azeem', url: 'https://github.com/xo-azeem' },
+  { name: 'Faris Salman', username: 'farissalman12', url: 'https://github.com/farissalman12' },
+];
+
+const EMAIL_PROFILES = [
+  { name: 'Muhammad Azeem', email: 'mailmeatazeem@gmail.com' },
+  { name: 'Faris Salman', email: 'farishunzai@gmail.com' },
+];
+
+const LINKEDIN_PROFILES = [
+  { name: 'Muhammad Azeem', url: 'https://www.linkedin.com/in/m-azeem-nadeem/' },
+  { name: 'Faris Salman', url: 'https://www.linkedin.com/in/faris-salman-b493b21a4/' },
+];
+
 export function Footer() {
   const { theme } = useTheme();
+  const [githubModalOpen, setGithubModalOpen] = useState(false);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [linkedinModalOpen, setLinkedinModalOpen] = useState(false);
   const brandName = "Shop360°";
-  
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
@@ -31,24 +50,26 @@ export function Footer() {
   const socialLinks = [
     {
       icon: <Github className="w-5 h-5" />,
-      href: "https://github.com",
-      label: "GitHub"
-    },
-    {
-      icon: <Twitter className="w-5 h-5" />,
-      href: "https://twitter.com",
-      label: "Twitter"
+      href: "#",
+      label: "GitHub",
+      isGitHub: true,
+      isEmail: false,
+      isLinkedIn: false,
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com",
-      label: "LinkedIn"
+      label: "LinkedIn",
+      isGitHub: false,
+      isEmail: false,
+      isLinkedIn: true,
     },
     {
       icon: <Mail className="w-5 h-5" />,
-      href: "mailto:contact@shop360.com",
-      label: "Email"
-    }
+      label: "Email",
+      isGitHub: false,
+      isEmail: true,
+      isLinkedIn: false,
+    },
   ];
 
   const mainLinks = [
@@ -98,16 +119,48 @@ export function Footer() {
           <ul className="flex list-none mt-6 md:mt-0 space-x-3">
             {socialLinks.map((link, i) => (
               <li key={i}>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="h-10 w-10 rounded-full"
-                  asChild
-                >
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+                {link.isGitHub ? (
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-10 w-10 rounded-full"
+                    onClick={() => setGithubModalOpen(true)}
+                    aria-label={link.label}
+                  >
                     {link.icon}
-                  </a>
-                </Button>
+                  </Button>
+                ) : link.isEmail ? (
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-10 w-10 rounded-full"
+                    onClick={() => setEmailModalOpen(true)}
+                    aria-label={link.label}
+                  >
+                    {link.icon}
+                  </Button>
+                ) : link.isLinkedIn ? (
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-10 w-10 rounded-full"
+                    onClick={() => setLinkedinModalOpen(true)}
+                    aria-label={link.label}
+                  >
+                    {link.icon}
+                  </Button>
+                ) : (
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="h-10 w-10 rounded-full"
+                    asChild
+                  >
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+                      {link.icon}
+                    </a>
+                  </Button>
+                )}
               </li>
             ))}
           </ul>
@@ -134,6 +187,211 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+      {/* GitHub contributors modal */}
+      <AnimatePresence>
+        {githubModalOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-[#000000]/40 dark:bg-[#000000]/60 backdrop-blur-sm"
+              aria-hidden="true"
+              onClick={() => setGithubModalOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="github-modal-heading"
+            >
+            <div className="flex items-center justify-between mb-5">
+              <h2
+                id="github-modal-heading"
+                className="text-lg font-semibold text-[#000000] dark:text-[#FFFFFF] tracking-tight"
+              >
+                Contributors
+              </h2>
+              <button
+                type="button"
+                onClick={() => setGithubModalOpen(false)}
+                className="p-1.5 rounded-full text-[#666666] dark:text-[#999999] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#F0F0F0] dark:hover:bg-[#1A1A1A] transition-colors"
+                aria-label="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="space-y-0">
+              {GITHUB_PROFILES.map((profile, index) => (
+                <React.Fragment key={profile.username}>
+                  {index > 0 && (
+                    <div className="my-4 border-t border-[#EBEBEB] dark:border-[#2A2A2A]" aria-hidden="true" />
+                  )}
+                  <a
+                    href={profile.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between gap-3 py-2 rounded-xl px-3 -mx-3 text-[#000000] dark:text-[#FFFFFF] hover:bg-[#F8F8F8] dark:hover:bg-[#1A1A1A] transition-colors duration-200 group"
+                  >
+                    <div className="min-w-0">
+                      <p className="font-medium text-[#000000] dark:text-[#FFFFFF] truncate">
+                        {profile.name}
+                      </p>
+                      <p className="text-sm text-[#666666] dark:text-[#999999] truncate">
+                        @{profile.username}
+                      </p>
+                    </div>
+                    <ExternalLink className="w-4 h-4 shrink-0 text-[#666666] dark:text-[#999999] group-hover:text-[#000000] dark:group-hover:text-[#FFFFFF] transition-colors" />
+                  </a>
+                </React.Fragment>
+              ))}
+            </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Email contributors modal */}
+      <AnimatePresence>
+        {emailModalOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-[#000000]/40 dark:bg-[#000000]/60 backdrop-blur-sm"
+              aria-hidden="true"
+              onClick={() => setEmailModalOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="email-modal-heading"
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h2
+                  id="email-modal-heading"
+                  className="text-lg font-semibold text-[#000000] dark:text-[#FFFFFF] tracking-tight"
+                >
+                  Contact
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setEmailModalOpen(false)}
+                  className="p-1.5 rounded-full text-[#666666] dark:text-[#999999] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#F0F0F0] dark:hover:bg-[#1A1A1A] transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="space-y-0">
+                {EMAIL_PROFILES.map((profile, index) => (
+                  <React.Fragment key={profile.email}>
+                    {index > 0 && (
+                      <div className="my-4 border-t border-[#EBEBEB] dark:border-[#2A2A2A]" aria-hidden="true" />
+                    )}
+                    <a
+                      href={`mailto:${profile.email}`}
+                      className="flex items-center justify-between gap-3 py-2 rounded-xl px-3 -mx-3 text-[#000000] dark:text-[#FFFFFF] hover:bg-[#F8F8F8] dark:hover:bg-[#1A1A1A] transition-colors duration-200 group"
+                    >
+                      <div className="min-w-0">
+                        <p className="font-medium text-[#000000] dark:text-[#FFFFFF] truncate">
+                          {profile.name}
+                        </p>
+                        <p className="text-sm text-[#666666] dark:text-[#999999] truncate">
+                          {profile.email}
+                        </p>
+                      </div>
+                      <Mail className="w-4 h-4 shrink-0 text-[#666666] dark:text-[#999999] group-hover:text-[#000000] dark:group-hover:text-[#FFFFFF] transition-colors" />
+                    </a>
+                  </React.Fragment>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* LinkedIn contributors modal */}
+      <AnimatePresence>
+        {linkedinModalOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-50 bg-[#000000]/40 dark:bg-[#000000]/60 backdrop-blur-sm"
+              aria-hidden="true"
+              onClick={() => setLinkedinModalOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#E8E8E8] dark:border-[#2A2A2A] bg-[#FFFFFF] dark:bg-[#0D0D0D] shadow-xl dark:shadow-[0_24px_48px_rgba(0,0,0,0.4)] p-6"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="linkedin-modal-heading"
+            >
+              <div className="flex items-center justify-between mb-5">
+                <h2
+                  id="linkedin-modal-heading"
+                  className="text-lg font-semibold text-[#000000] dark:text-[#FFFFFF] tracking-tight"
+                >
+                  LinkedIn
+                </h2>
+                <button
+                  type="button"
+                  onClick={() => setLinkedinModalOpen(false)}
+                  className="p-1.5 rounded-full text-[#666666] dark:text-[#999999] hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:bg-[#F0F0F0] dark:hover:bg-[#1A1A1A] transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="space-y-0">
+                {LINKEDIN_PROFILES.map((profile, index) => (
+                  <React.Fragment key={profile.url}>
+                    {index > 0 && (
+                      <div className="my-4 border-t border-[#EBEBEB] dark:border-[#2A2A2A]" aria-hidden="true" />
+                    )}
+                    <a
+                      href={profile.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 py-2 rounded-xl px-3 -mx-3 text-[#000000] dark:text-[#FFFFFF] hover:bg-[#F8F8F8] dark:hover:bg-[#1A1A1A] transition-colors duration-200 group"
+                    >
+                      <div className="min-w-0">
+                        <p className="font-medium text-[#000000] dark:text-[#FFFFFF] truncate">
+                          {profile.name}
+                        </p>
+                        <p className="text-sm text-[#666666] dark:text-[#999999] truncate">
+                          LinkedIn profile
+                        </p>
+                      </div>
+                      <ExternalLink className="w-4 h-4 shrink-0 text-[#666666] dark:text-[#999999] group-hover:text-[#000000] dark:group-hover:text-[#FFFFFF] transition-colors" />
+                    </a>
+                  </React.Fragment>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </footer>
   );
 }
